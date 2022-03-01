@@ -1,0 +1,11 @@
+.heading1{
+    color: black;
+}
+.heading{
+    color: black;
+}
+@media (max_width : 800) {
+    .heading1{ color: brown;}
+    .heading{ color: brown;}
+    
+}
