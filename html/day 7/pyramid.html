@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyramid triangle javascript</title>
+  </head>
+  
+  <body>
+    <h2>Pyramid triangle javascript</h2>
+      <script>
+          let a = 6; 
+          let b = "";
+          for (let i = 1; i <= a; i++) {
+            for (let j = a; j > i; j--) {
+              b += " ";
+            }
+            for (let k = 0; k < i * 2 - 1; k++) {
+              b += "*";
+            }
+            b += "<br>";
+          }
+          document.write(`<pre>${b}</pre>`);
+        </script>  
+  </body>
+  </html>

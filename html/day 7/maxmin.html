@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <button>Get</button>
+        <h1>Result</h1>
+    </div>
+    <script>
+        let btnGet = document.querySelector('button');
+        let result = document.querySelector('h1');
+        let numbers = [10, -3, 50, -2, 70, 40, 60];
+        btnGet.addEventListener('click', () => {
+            let min = Math.min(...numbers);
+            let max = Math.max(...numbers);
+            result.innerText = `min: ${min} - max: ${max}`;
+        });
+    </script>
+</body>
+
+</html>
