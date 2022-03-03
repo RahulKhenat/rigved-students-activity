@@ -1,0 +1,78 @@
+<html>
+
+<body>
+    <script>
+        function validateform() {
+            var name = document.myform.name.value;
+            var lname = document.myform.lname.value;
+            var password = document.myform.password.value;
+            var cpassword = document.myform.cpassword.value;
+            var gender = document.myform.gender.value;
+            var skills = document.myform.skills.value;
+
+            if (name == null || name == "") {
+                alert("Name can't be blank");
+                return false;
+            } if (name.length < 3) {
+                alert("Name charecture must be greater than 3");
+                return false;
+            } if (lname == null || lname == "") {
+                alert("Last Name can't be blank");
+                return false;
+            } if (lname.length < 3) {
+                alert("Last Name charecture must be greater than 3");
+                return false;
+
+            } if (password == null || password == "") {
+                alert("password can't be blank");
+                return false;
+
+            } if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            } if (cpassword == null || cpassword == "") {
+                alert("Confirm password can't be blank");
+                return false;
+
+            } if (cpassword.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+
+            }  if (cpassword != password) {
+                alert("Password not match");
+                return false;
+            }
+             if (gender == null || gender == "") {
+                alert("Gender Shuld be Select");
+                return false;  
+            }
+            if(skills.value.length < 1){
+                alert("select atleast one skill")
+                return false;
+            }
+          
+        }
+    </script>
+
+    <body>
+        <form name="myform" method="post" action="form2.html"
+            onsubmit="return validateform()">
+            First Name: <input type="text" name="name" autocomplete="off"><br />
+            Last Name: <input type="text" name="lname" autocomplete="off"><br />
+            Password: <input type="password" name="password"><br />
+            Confirm Password: <input type="password" name="cpassword"><br />
+            <div>Gender:
+                <input type="radio" name="gender" autocomplete="off" value="Male">Male
+                <input type="radio" name="gender" autocomplete="off" value="Female">Female
+            </div>
+            <div>Skills:
+                <input type="checkbox" name="skills" autocomplete="off" value="JS">JS
+                <input type="checkbox" name="skills" autocomplete="off" value="Python">Python
+                <input type="checkbox" name="skills" autocomplete="off" value="C">C++
+            </div>
+            <input type="submit" value="register"> </div>
+            <input type="reset" value="reset">
+        </form>
+    </body>
+
+</html>
