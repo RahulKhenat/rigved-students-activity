@@ -1,0 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        color:black;
+            }
+</style>
+
+
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th>Id</th>
+        <th>Full Name</th>
+        <th>State</th>
+        <th>City</th>
+    </tr>
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+	var myArray = [
+        
+        {customerId: 12345, firstname: 'Sachin', lastname: 'Tendulkar', address : {state: 'Maharashtra', city: 'Mumbai'}}, 
+        {customerId: 22545, firstname: 'Rahul', lastname: 'Dravid', address : {state: 'Karnataka', city: 'Banglore'}}, 
+        {customerId: 45266, firstname: 'Rohit', lastname: 'Sharma', address : {state: 'Maharashtra', city: 'Pune'}},     
+]
+	
+	buildTable(myArray)
+
+
+
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].customerId}</td>
+							<td>${data[i].firstname} ${data[i].lastname}</td>
+							<td>${data[i].address.state}</td>
+							<td>${data[i].address.city}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+
+</script>

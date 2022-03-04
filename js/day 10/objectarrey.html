@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="table"></div>
+    <script type="text/javascript">
+        function funCall() {
+            var myArrey = [
+
+                { customerId: 100, firstname: 'Rahul', lastname: 'Khenat', address: { state: 'Maharashtra', city: 'Pune' } },
+                { customerId: 200, firstname: 'Nikhil', lastname: 'Pawar', address: { state: 'Maharashtra', city: 'Satara' } },
+                { customerId: 300, firstname: 'Vikas', lastname: 'Raskar', address: { state: 'Maharashtra', city: 'Solapur' } },
+
+
+            ]
+            var html = "<table border ='1|1'>"
+
+            setTimeout(() => {
+                for (var i = 0; i < myArrey.length; i++) {
+                    html += '<tr>';
+                    html += '<td>' + myArrey[i].customerId + '</td>';
+                    html += '<td>' + myArrey[i].firstname + ' ' + myArrey[i].lastname + '</td>';
+                    html += '<td>' + myArrey[i].address.state + '</td>';
+                    html += '<td>' + myArrey[i].address.city + '</td>';
+                    html += '</tr>'
+                }
+                document.getElementById("table").innerHTML = html
+            }, 500);
+        }
+        funCall()
+
+    </script>
+</body>
+
+</html>
