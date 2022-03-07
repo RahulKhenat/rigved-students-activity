@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Activity</title>
+  
+</head>
+<body>
+
+
+
+<canvas id="chessBoard" width="400" height="400" ></canvas><canvas id="myCanvas" style=" border: 2px solid black; margin: 2%; "></canvas>
+
+    <script type="text/javascript">
+var squareSizw;
+const numOfRows = 8;
+const NUMBER_OF_COLS = 8;
+var NUMBER_OF_SQUARES;
+
+var xValue = 0;
+var yValue = 0;
+
+var canvas, ctx
+
+window.onload
+    canvas = document.getElementById("chessBoard");
+    ctx = canvas.getContext("2d");
+    squareSizw = canvas.height / numOfRows;
+    NUMBER_OF_SQUARES = numOfRows * NUMBER_OF_COLS;
+
+    console.log("Size of each square = " + squareSizw +"px");
+
+    drawBoard(canvas, numOfRows, NUMBER_OF_COLS);
+
+
+function drawBoard(can, nRow, nCol) {
+    var ctx = can.getContext("2d");
+    var w = can.width;
+    var h = can.height;
+
+    nRow = nRow || 12;    // default number of rows
+    nCol = nCol || 12;    // default number of columns
+
+    w /= nCol;            // width of a block
+    h /= nRow;            // height of a block
+
+    for (var i = 0; i < nRow; ++i) {
+        for (var j = 0, col = nCol / 2; j < col; ++j) {
+            ctx.rect(2 * j * w + (i % 2 ? 0 : w), i * h, w, h);
+        }
+    }
+
+    ctx.fill();
+}
+// Rainbow
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+var arcWidth = 12;
+var radius = 8 * arcWidth;
+
+var cool = document.getElementById("myCanvas");
+var context = cool.getContext("2d");
+cool.width = (radius + (colors.length-0.5) * arcWidth) * 2;
+cool.height = (radius + (colors.length-1) * arcWidth);
+
+var drawArc = function( color ){
+  context.beginPath();
+  context.arc(
+    cool.width/2,
+    cool.height + arcWidth/2,
+    radius,
+    Math.PI,
+    2*Math.PI
+  );
+  context.lineWidth = arcWidth;
+  context.strokeStyle = color;
+  context.stroke();
+  context.closePath();
+  radius += arcWidth;
+};
+
+colors.reverse().forEach( drawArc );
+    </script>
+
+</body>
+</html>
