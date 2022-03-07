@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <p id="cool">My Name Is Rahul</p>
+        <button onclick="changeFontSize('increase')">Increase Font</button>
+        <button onclick="changeFontSize('decrease')">Decrease Font</button>
+    </div>
+</body>
+<script>
+    function changeFontSize(type) {
+        console.log(type);
+        var id = ["#cool"];
+        id.forEach(id => {
+            var el = document.querySelector(id);
+
+            var fontSize = window.getComputedStyle(el, null).getPropertyValue("font-size");
+
+            fontSize = parseFloat(fontSize);
+
+            if (type === "increase") {
+                el.style.fontSize = (fontSize + 5) + "px";
+            } else {
+                el.style.fontSize = (fontSize - 5) + "px";
+            }
+        })
+    }
+</script>
+
+</html>
