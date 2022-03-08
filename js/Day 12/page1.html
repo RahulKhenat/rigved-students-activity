@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Page</title>
+</head>
+<body>
+    <h1>Local Storage</h1>
+    <table>
+    <tr><th> Name:</th><td><input type = "text" name = "n1" id = "i1"></td></tr>
+    <tr><th> Age:</th><td><input type = "text" name = "a1" id = "i2"></td></tr>
+    <tr><th><input type = "button" value = "Submit" onclick="storeUser()"> </th>
+    <td><a href = "page2.html">next page</a></td></tr>
+</table>
+    <script type = "text/javascript">
+        function storeUser() {
+            
+            var input = document.getElementById('i1').value;
+            var age = document.getElementById('i2').value;
+            if(input.length < 1) {
+                alert("please enter some input");
+            } else {
+                localStorage.setItem('user', input);
+                localStorage.setItem('age', age);
+            }
+        }
+    </script>
+</body>
+</html>
