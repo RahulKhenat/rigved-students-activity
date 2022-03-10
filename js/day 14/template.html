@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <script type = text/javascript>
+    let users = [
+    {name: "vikas", age: 26, address:{city: "MUM", state: "MH" }},
+    {name: "rahul", age: 25,},
+    {name: "nikhil", age: 23, address:{city: "BLR", state: "KA" }},
+    {name: "pawan", age: 30,},
+    {name: "khandu", age: 31, address:{city: "CHN", state: "TN" }},
+    ];
+    document.write(`<table BORDER="2PX">`)
+    document.write(`<tr><th>Name</th> <th>Age</th> <th>City</th> <th>State</th></tr>`)
+    for( i=0; i<users.length; i++)
+    document.write(`<tr><td> ${users[i].name}</td><td> ${users[i].age}</td><td> ${users[i]?.address?.city}</td><td>  ${users[i]?.address?.state}</td></tr>`)
+    document.write(`</table>`)
+    
+    </script>
+    
+</body>
+</html>
