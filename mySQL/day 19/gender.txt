@@ -1,0 +1,54 @@
+mysql> select * from person//
++------+-------+--------+
+| id   | name  | gender |
++------+-------+--------+
+|   10 | rahul | male   |
+|   11 | rani  | female |
++------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> call gen(10)//
++----------------------+
+| concat("MS.",n_name) |
++----------------------+
+| MS.rahul             |
++----------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop procedure gen//
+Query OK, 0 rows affected (0.81 sec)
+
+mysql> create procedure gen (IN bin int)
+    -> begin
+    -> declare n_name varchar(15);
+    -> declare g_name varchar(15);
+    -> select name into n_name from person where id = bin;
+    -> select gender into g_name from person where id = bin;
+    -> if g_name = 'male'
+    -> then select concat("MR.",n_name)from person where id = bin;
+    -> else select concat("MS.",n_name)from person where id = bin;
+    -> end if;
+    -> end//
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> call gen(10)//
++----------------------+
+| concat("MR.",n_name) |
++----------------------+
+| MR.rahul             |
++----------------------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> call gen(11)//
++----------------------+
+| concat("MS.",n_name) |
++----------------------+
+| MS.rani              |
++----------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
