@@ -1,0 +1,48 @@
+ use Rahul_db
+switched to db Rahul_db
+> db.createCollection("employee");
+{ "ok" : 1 }
+> db.createCollection("EMPLOYEE");
+{ "ok" : 1 }
+> db.employee.insertOne({_id : 100, Name :"pappu"});
+{ "acknowledged" : true, "insertedId" : 100 }
+> db.EMPLOYEE.insertOne({_id : 100, Name :"pappu"});
+{ "acknowledged" : true, "insertedId" : 100 }
+> db.employee.find()
+{ "_id" : 100, "Name" : "pappu" }
+> db.EMPLOYEE.find()
+{ "_id" : 100, "Name" : "pappu" }
+> db.createCollection("rahul1");
+{ "ok" : 1 }
+> db.createCollection("user");
+{ "ok" : 1 }
+> db.user.insertMany([{_id: 11, name: "cool", password :"cool123"}, {_id: 12, name:"nikhil", password: "nikhil123"}, {_id: 13, name: "pappu", password: "pappu123"}]);
+{ "acknowledged" : true, "insertedIds" : [ 11, 12, 13 ] }
+> db.user.find()
+{ "_id" : 11, "name" : "cool", "password" : "cool123" }
+{ "_id" : 12, "name" : "nikhil", "password" : "nikhil123" }
+{ "_id" : 13, "name" : "pappu", "password" : "pappu123" }
+> db.user.find({_id:11};
+... db.user.find({_id:11});
+... ;
+... ^C
+
+> db.user.find({_id:11});
+{ "_id" : 11, "name" : "cool", "password" : "cool123" }
+> db.user.deleteOne({_id:11});
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.user.remove({});
+WriteResult({ "nRemoved" : 2 })
+> db.user.find();
+> db.user.insertMany([{_id: 11, name: "cool", password :"cool123"}, {_id: 12, name:"nikhil", password: "nikhil123"}, {_id: 13, name: "pappu", password: "pappu123"}]);
+{ "acknowledged" : true, "insertedIds" : [ 11, 12, 13 ] }
+> db.user.find();
+{ "_id" : 11, "name" : "cool", "password" : "cool123" }
+{ "_id" : 12, "name" : "nikhil", "password" : "nikhil123" }
+{ "_id" : 13, "name" : "pappu", "password" : "pappu123" }
+> db.user.update({_id:11},{$set:{password:"rahul123"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.user.find();
+{ "_id" : 11, "name" : "cool", "password" : "rahul123" }
+{ "_id" : 12, "name" : "nikhil", "password" : "nikhil123" }
+{ "_id" : 13, "name" : "pappu", "password" : "pappu123" }
