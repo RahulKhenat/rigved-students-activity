@@ -1,0 +1,62 @@
+//==================================================================i. Use Database=====================================================================================================//
+
+> use Vikas_db;
+switched to db Rahul_db
+
+//==========================================================ii. Generate student collection==============================================================================================//
+> db.createCollection("student")
+{ "ok" : 1 }
+
+//==========================================================iii. Insert Database sequence================================================================================================//
+
+> db.student.insert ( {_id: "id" , sequence_value : 0 } )
+WriteResult ( { "nInserted" : 1 } )
+
+//==========================================================iv. create Javascript function===============================================================================================//
+
+>function seq(seqName){var seqDoc = db.student.findAndModify({ query:{_id: seqName }, update: {$inc:{sequence_value:1}},  new:true}); return seqDoc.sequence_value;}
+
+//==========================================================v. Use Javascript Function and Insert records================================================================================//
+
+>db.student.insert({"_id": getSeq("id"),"Student_name": "rahul","Collage_Name": "ABC","Branch": "Machanical","Class": "SE"});
+WriteResult({ "nInserted" : 1 })
+>db.student.insert({"_id": getSeq("id"),"Student_name": "pawan","Collage_Name": "ABC","Branch": "Civil","Class": "BE"});
+WriteResult({ "nInserted" : 1 })
+>db.student.insert({"_id": getSeq("id"),"Student_name": "akshay","Collage_Name": "ABC","Branch": "ExTC","Class": "TE"});
+WriteResult({ "nInserted" : 1 })
+>db.student.insert({"_id": getSeq("id"),"Student_name": "suyog","Collage_Name": "ABC","Branch": "Electrical","Class": "BE"});
+WriteResult({ "nInserted" : 1 })
+
+//==========================================================vi. View inserted record from student collection==============================================================================================//
+
+> db.student.find().pretty()
+{ "_id" : "id", "sequence_value" : 4 }
+{
+        "_id" : "1",
+        "Student_name" : "rahul",
+        "Collage_Name" : "ABC",
+        "Branch" : "Machanical",
+        "Class" : "SE"
+}
+{
+        "_id" : "2",
+        "Student_name" : "pawan",
+        "Collage_Name" : "ABC",
+        "Branch" : "Civil",
+        "Class" : "BE"
+}
+{
+        "_id" : "3",
+        "Student_name" : "akshay",
+        "Collage_Name" : "ABC",
+        "Branch" : "ExTC",
+        "Class" : "TE"
+}
+{
+        "_id" : "4",
+        "Student_name" : "suyog",
+        "Collage_Name" : "ABC",
+        "Branch" : "Electrical",
+        "Class" : "BE"
+}
+>	
