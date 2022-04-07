@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <h1>Cart Size: {{num}}</h1>
+  <h1>Total Amount: {{p2}}</h1>
+  <div class="flex-container"></div>
+  <app-child (data)="num = $event" (price1)="p2 = $event"></app-child>
+</div>

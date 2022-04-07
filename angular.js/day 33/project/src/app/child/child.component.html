@@ -1,0 +1,10 @@
+<div *ngFor="let prd of products" class="card border-info mb-3" style="max-width: 25rem;" >
+    <div style="text-align: center; background-color: rgb(0, 255, 13);">
+        <div class="card-body flex-container">
+          <h5 class="card-title">Product Name: <p><b>{{prd.name}}</b></p></h5>
+          <h5 class="card-title" >Price: <p id="i1"><b>{{prd.price}}</b></p></h5>
+          <button (click)="add(prd.price)" class="btn btn-primary">Add into Cart</button>&nbsp;
+          <button (click)="rmv(prd.price)" class="btn btn-danger">Remove From Cart</button>
+        </div>
+      </div>
+</div>
