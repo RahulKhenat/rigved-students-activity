@@ -1,0 +1,80 @@
+<div class="justify-content-center ">
+    <div class="col-md-6 text-left rounded shadow py-3 container-fluid" style="background-color: rgb(133, 186, 186);">
+        <h2 style="font-family:'Times New Roman', Times, serif; text-align: center;">Validation Form</h2>
+        <form #user="ngForm" (ngSubmit)="handleSubmit(user.value)">
+            <div class="mb-3">
+                <label class="form-label"><b style="font-family: 'Times New Roman', Times, serif;">First
+                        Name:</b></label>
+                <input type="text" class="form-control" name="fn" ngModel #td1="ngModel" required minlength="3"
+                    placeholder="Enter Your First Name">
+                <span [hidden]="td1.valid || td1.pristine" class="text-danger">First name must be greater than and equal
+                    to 3</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><b style="font-family: 'Times New Roman', Times, serif;">Last
+                        Name:</b></label>
+                <input type="text" class="form-control" name="ln" ngModel #td2="ngModel" required minlength="2"
+                    placeholder="Enter Your Last Name">
+                <span [hidden]="td1.valid || td2.pristine" class="text-danger">Last name must be greater than and equal
+                    to 2</span>
+            </div>
+
+
+
+            <div>
+                <b style="font-family: 'Times New Roman', Times, serif;">Gender: </b>
+                <input class="form-check-input " type="radio" name="gn" value="Male" ngModel #td3="ngModel" required>
+                Male
+                <input class="form-check-input " type="radio" name="gn" value="Female" ngModel #td3="ngModel" required>
+                Female
+                <span [hidden]="td3.valid || td3.pristine " class="text-danger">Must select Gender</span>
+            </div>
+
+            <div>
+                <b style="font-family: 'Times New Roman', Times, serif;">Skills:</b>
+                <input class="form-check-input" type="checkbox" name="sk" value="Java" ngModel #td4="ngModel"> Java
+                <input class="form-check-input" type="checkbox" name="sk" value="C" ngModel #td4="ngModel" required> C
+                <input class="form-check-input" type="checkbox" name="sk" value="C++" ngModel #td4="ngModel" required>
+                C++
+                <input class="form-check-input" type="checkbox" name="sk" value="Python" ngModel #td4="ngModel"
+                    required> Python
+                <span [hidden]="td4.valid || td4.pristine" class="text-danger">Must Select</span>
+            </div>
+
+            <div class="form-group col-md-4">
+                <b style="font-family: 'Times New Roman', Times, serif;">Qualification:</b>
+                <select class="form-control" name="qa" ngModel #td5="ngModel" required
+                    style="border: none; border-radius: 5px;">
+                    <option value="BE">BE</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MTECH">MTECH</option>
+                </select>
+                <span [hidden]="td5.valid || td5.pristine" class="text-danger">Must Select</span>
+            </div>
+
+            <div class="form-group">
+                <b style="font-family: 'Times New Roman', Times, serif;"> Address:</b>
+                <textarea class="form-control" name="ad" rows="3" cols="25" ngModel #td6="ngModel" required></textarea>
+                <span [hidden]="td6.valid || td6.pristine" class="text-danger">Input is mandatory</span>
+            </div>
+            <div class="justify-content-center py-1" >
+                <button type="submit" class="btn btn-primary " value="Register" [disabled]="user.invalid"
+                    >Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="justify-content-center ">
+    <div class="col-md-6 text-left rounded shadow px-3 container-fluid" style="background-color: rgb(133, 186, 186);"
+        [hidden]="user.invalid">
+        <p style="font-family: 'Times New Roman', Times, serif;">First Name: {{first |titlecase}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif;">Last Name: {{last |titlecase}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif;">Gender: {{gender}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif;">Skill: {{skill}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif;">Qualification: {{qual}}</p>
+        <p style="font-family: 'Times New Roman', Times, serif;">Address: {{add}}</p>
+    </div>
+</div>
