@@ -24,7 +24,7 @@
                 <th>Phone No:</th>
                 <td>
                     <input type="text" formControlName="phoneNo" class="form-control">
-                    <span class="text-danger" [hidden]="profileForm.controls['phoneNo'].valid || profileForm.controls['phoneNo'].pristine">Phone number must of 10 digit</span>
+                    <span class="text-danger" [hidden]="profileForm.controls['phoneNo'].valid || profileForm.controls['phoneNo'].pristine">Phone no is required</span>
                 </td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
                 <tr>
                     <th>Pin:</th>
                     <td><input type="text" formControlName="pin" class="form-control"> 
-                    <span class="text-danger" [hidden]="profileForm.controls['address'].get('pin')?.valid || profileForm.controls['address'].get('pin')?.pristine">Pin Code must be of 6 digits</span></td>
+                    <span class="text-danger" [hidden]="profileForm.controls['address'].get('pin')?.valid || profileForm.controls['address'].get('pin')?.pristine">Pin is required</span></td>
                 </tr>
             </div>
             <div>

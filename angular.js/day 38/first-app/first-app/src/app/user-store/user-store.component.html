@@ -1,56 +1,75 @@
 <div>
     <h3>User Store Form</h3>
-    
-        <form [formGroup]="profileForm" (ngSubmit)="saveForm()">
-            <table>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveForm()" >
+        <table>
             <tr>
                 <th>Name:</th>
-                <td><input type="text" formControlName="name" class="form-control">
-                    <span class="text-danger" [hidden]="profileForm.controls['name'].valid || profileForm.controls['name'].pristine">Name is required</span></td>
+                <td><input type="text" formControlName="name" class="form-control" placeholder="Enter Name">
+                    <span class="text-danger"
+                        [hidden]="profileForm.controls['name'].valid || profileForm.controls['name'].pristine">Name is
+                        required</span>
+                </td>
             </tr>
             <tr>
+            
                 <th>Gender:</th>
                 <td><input type="radio" name="gender" value="Male" formControlName="gender" >Male
                     <input type="radio" name="gender" value="Female" formControlName="gender">Female
-                    <span class="text-danger" [hidden]="profileForm.controls['gender'].valid || profileForm.controls['gender'].pristine">Gender is required</span></td>
+                    <span class="text-danger"
+                        [hidden]="profileForm.controls['gender'].valid || profileForm.controls['gender'].pristine">Gender
+                        is required</span>
+                </td>
             </tr>
             <tr>
-                <th>Phone Number:</th>
+                <th>Phone No:</th>
                 <td>
-                    <input type="text" formControlName="phoneNo" class="form-control">
-                    <span class="text-danger" [hidden]="profileForm.controls['phoneNo'].valid || profileForm.controls['phoneNo'].pristine">Phone number must of 10 digit</span>
+                    <input type="number" formControlName="phoneNo" class="form-control" placeholder="Enter 10 digit Number">
+                    <span class="text-danger"
+                        [hidden]="profileForm.controls['phoneNo'].valid || profileForm.controls['phoneNo'].pristine">Phone
+                        no is required</span>
                 </td>
             </tr>
             <tr>
                 <th>Email Id:</th>
                 <td>
-                    <input type="text" formControlName="emailId" class="form-control">
-                    <span class="text-danger" [hidden]="profileForm.controls['emailId'].valid || profileForm.controls['emailId'].pristine">Email ID is required</span>
+                    <input type="text" formControlName="emailId" class="form-control" placeholder="Enter emailId">
+                    <span class="text-danger"
+                        [hidden]="profileForm.controls['emailId'].valid || profileForm.controls['emailId'].pristine">Email
+                        ID is required</span>
                 </td>
             </tr>
             <div formGroupName="address">
                 <tr>
                     <th>State:</th>
                     <td>
-                        <input type="text" formControlName="state" class="form-control">
-                        <span class="text-danger" [hidden]="profileForm.controls['address'].get('state')?.valid || profileForm.controls['address'].get('state')?.pristine">State is required</span>
+                        <input type="text" formControlName="state" class="form-control" placeholder="Enter State">
+                        <span class="text-danger"
+                            [hidden]="profileForm.controls['address'].get('state')?.valid || profileForm.controls['address'].get('state')?.pristine">State
+                            is required</span>
                     </td>
                 </tr>
                 <tr>
                     <th>City:</th>
-                    <td><input type="text" formControlName="city" class="form-control">
-                        <span class="text-danger" [hidden]="profileForm.controls['address'].get('city')?.valid || profileForm.controls['address'].get('city')?.pristine">City is required</span></td>
+                    <td><input type="text" formControlName="city" class="form-control" placeholder="Enter City">
+                        <span class="text-danger"
+                            [hidden]="profileForm.controls['address'].get('city')?.valid || profileForm.controls['address'].get('city')?.pristine">City
+                            is required</span>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Pin Code:</th>
-                    <td><input type="text" formControlName="pin" class="form-control"> 
-                    <span class="text-danger" [hidden]="profileForm.controls['address'].get('pin')?.valid || profileForm.controls['address'].get('pin')?.pristine">Pin Code must be of 6 digits</span></td>
+                    <th>Pin:</th>
+                    <td><input type="number" formControlName="pin" class="form-control" placeholder="Enter 6 digit Number">
+                        <span class="text-danger"
+                            [hidden]="profileForm.controls['address'].get('pin')?.valid || profileForm.controls['address'].get('pin')?.pristine">Pin
+                            is required</span>
+                    </td>
                 </tr>
-            </div>
+            </div><br>
             <div>
-                <input type="submit" value="Save" [disabled]="profileForm.invalid" >
+                <input type="submit" value="submit" [disabled]="profileForm.invalid">
             </div>
-            </table>
-        </form>
-        
+        </table>
+    </form>
+
 </div>
