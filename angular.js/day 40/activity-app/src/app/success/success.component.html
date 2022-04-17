@@ -1,0 +1,16 @@
+<h2 class="alert alert-success text-center">Success Login</h2>
+<div>
+  <div>
+    <a routerLink = "dashboard">Dashboard</a> |
+    <a routerLink = "list">List</a> |
+    <a routerLink = "/login">Logout</a> |
+    <a routerLink = "">Home</a>
+</div>
+    <div class="card" style="width: 18rem;">
+      <h2>Login SuccessFull !!!</h2>  
+      <div class="card-body">
+          <h5 class="card-title" *ngIf = "username">Hello, {{username}}</h5>
+        </div>
+      </div>
+    <router-outlet></router-outlet>
+</div>

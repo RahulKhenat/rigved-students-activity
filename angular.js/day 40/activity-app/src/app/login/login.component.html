@@ -1,0 +1,22 @@
+<div class="">
+<h2 class="container my-3">SIGN IN</h2>
+<div class="container">
+    
+    <form action="" class="form-control" style="width: fit-content;">
+        <table>
+        <tr >
+            <td >Username :<input type="text" [formControl]="username"class = "form-control" ></td>
+        </tr>
+        <tr>
+            <td>Password : <input type="password" [formControl]="password" class = "form-control"></td>
+        </tr>
+        <tr >
+            <td class="container my-1 text-center"><input type="button"  value="login" (click)="handleLogin()" class="btn btn-primary"></td>
+        </tr>
+        <tr>
+            <td class="container my-1 text-center"><a routerLink="/register">Sign UP</a>/<a routerLink="">HOME</a></td>
+        </tr>
+    </table>
+    </form>
+</div>
+</div>
