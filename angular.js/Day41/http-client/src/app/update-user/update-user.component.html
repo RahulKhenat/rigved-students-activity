@@ -1,0 +1,14 @@
+<div>
+    <div>
+        Id: <input type="number" [formControl]="id">
+    </div>
+    <div>
+        Age: <input type="number" [formControl]="age">
+    </div>
+    <div>
+        <input type="submit" value="Update" (click)="handleUpdate()">
+    </div>
+    <div>
+        <p *ngIf="out">{{out | json}}</p>
+    </div>
+</div>

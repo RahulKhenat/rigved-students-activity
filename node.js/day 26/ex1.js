@@ -1,26 +1,34 @@
+// importing all the necessary libraries
 let express = require("express");
 let cors = require("cors");
 let mongoClient = require("mongodb").MongoClient;
 let parser = require("body-parser");
-const { response } = require("express");
 
+// referencing top level express function 
 let app = express();
+// database url
 let dbURL = "mongodb://localhost:27017";
-PORT = 3001;
+// express server port
+let PORT = 3001;
 
-app.listen(PORT, () => console.log(`server running is ${PORT}`));
+// start the express server
+app.listen(PORT, () => console.log(`Server running in ${PORT}`));
+
+// middleware to parse request & enable cors
 app.use(parser.json());
 app.use(cors());
-
+// on GET: /users you must able to returns all the user object 
 app.get("/users", (request, response) => {
-    mongoClient.connect(dbURL, { useNewUrlParser: true }, (error, client) => {
-        if (error)
+    // connect(url, parser, callback)
+    mongoClient.connect(dbURL, {useNewUrlParser:true}, (error, client) => {
+        if(error) 
             throw error;
-        let db = client.db("cool")
-        let cursor = db.collection("ishwar").find();
+        let db = client.db("cool");
+        let cursor = db.collection("users").find();
         let users = [];
+        //cursor.forEach(callback1, callback2)
         cursor.forEach((doc, err) => {
-            if (err)
+            if(err)
                 throw err;
             users.push(doc);
         }, () => {
@@ -28,73 +36,77 @@ app.get("/users", (request, response) => {
             client.close();
         });
     });
-
 });
+// on POST: /users you must able to store the user object
 app.post("/users", (request, response) => {
     let userDocument = request.body;
-    mongoClient.connect(dbURL, { useNewUrlParser: true }, (error, client) => {
-
-        if (error)
+    // connect(url, parser, callback)
+    // parser parses the url to establish connection
+    mongoClient.connect(dbURL, {useNewUrlParser:true}, (error, client) => {
+        if(error)
             throw error;
+        // connect to the mydb instance
         let db = client.db("cool");
-        db.collection("ishwar").insertOne(userDocument, (err, res) => {
-            if (err) {
-                response.status(409), json({
-                    "message": `user with in id ${userDocument._id}`
-                })
+        // use the collection 'user' to insert the document
+        db.collection("users").insertOne(userDocument, (err, res) => {
+            if(err) {
+                // 409 status code is for conflict
+                response.status(409).json({"message": `Users with an id ${userDocument._id} exists`});
             }
-
-            response.status(201).json(res)
+            // 201 status code is used when resource is created
+            response.status(201).json(res);
             client.close();
-
-
         });
     });
 });
-
-
+//on GET: /users/:id to get a single document based on id
 app.get("/users/:id", (request, response) => {
+    // reading the path parameter, converting id in int format
     let id = parseInt(request.params.id);
-    mongoClient.connect(dbURL, { useNewUrlParser: true }, (error, client) => {
-        if (error) throw error;
+    // connect(url, parser, callback)
+    mongoClient.connect(dbURL, {useNewUrlParser:true}, (error, client) => {
+        if(error)
+            throw error;
+        // use the mydb instance
         let db = client.db("cool");
-        db.collection("ishwar").findOne({ _id: id })
-            .then((doc) => {
-                if (doc != null) {
-                    response.json(doc);
-
-                } else {
-                    response.status(404).json({ "message": `Sorry ${id} doesn't exist` });
-                }
-                client.close();
-            });
+        // use the collection 'user'
+        db.collection("users").findOne({_id:id})
+        .then((doc) => {
+            if(doc != null) {
+                response.json(doc);
+            } else {
+                response.status(404).json({"message":`Sorry ${id} doesn't exist`})
+            }
+            client.close();
+        });
     });
 });
-
+//on DELETE: /users/:id to delete the document based on id
 app.delete("/users/:id", (request, response) => {
     let id = parseInt(request.params.id);
-    mongoClient.connect(dbURL, { useNewUrlParser: true }, (error, client) => {
-        if (error)
-            throw error;
-        let db = client.db("cool")
-        db.collection("ishwar").deleteOne({ _id: id })
-            .then((doc) => {
-                response.json(doc);
-                client.close();
-            })
-    });
-});
-
-app.put("/users/:id/:Name", (request, response)=>{
-    let id = parseInt(request.params.id);
-    let NewName = (request.params.Name);
-    mongoClient.connect(dbURL,{useNewUrlParser:true},(error, client)=>{
+    mongoClient.connect(dbURL, {useNewUrlParser:true}, (error, client) => {
         if(error) throw error;
         let db = client.db("cool");
-        db.collection("ishwar").updateOne({_id:id},{$set:{name : NewName}})
-        .then((doc)=>{
+        // use the collection 'user' and deleteOne() to delete based on id
+        db.collection("users").deleteOne({_id:id})
+        .then((doc) => {
             response.json(doc);
             client.close();
         })
-    })
-})
+    });
+});
+// on PUT: /users/:id/:age to update age from id
+app.put("/users/:id/:age", (request, response) => {
+    let id = parseInt(request.params.id);
+    let ageNew = parseInt(request.params.age);
+    mongoClient.connect(dbURL, {useNewUrlParser:true}, (error, client) => {
+        if(error) throw error;
+        let db = client.db("cool");
+        // use the collection 'user' and updateOne() to update the age on id
+        db.collection("users").updateOne({_id:id}, {$set:{age: ageNew}})
+        .then((doc) => {
+            response.json(doc);
+            client.close();
+        })
+    });
+});
